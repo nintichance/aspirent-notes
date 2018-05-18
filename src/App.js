@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Input from './components/Input'
 import List from './components/List'
+import { AppContainer } from './components/styled-components/Containers'
 
 class App extends Component {
   state = {
@@ -14,11 +15,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Hello from App.js
+      <AppContainer>
         <Input addTodo={this.addTodo}/>
         <List todos={this.state.todos}/>
-      </div>
+      </AppContainer>
     )
   }
 }

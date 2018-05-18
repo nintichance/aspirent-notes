@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { InputContainer } from './styled-components/Containers'
+import { Form } from './styled-components/Form'
 class Input extends Component{
     state = {
         todo: ''
@@ -6,7 +8,6 @@ class Input extends Component{
 
     handleChange = (event) => {
         event.preventDefault()
-        console.log(this.state.todo)
         this.setState({ [event.target.name]: event.target.value })
     }
     addTodo = (event) => {
@@ -16,16 +17,15 @@ class Input extends Component{
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.addTodo}>
+            <InputContainer>
+                <Form onSubmit={this.addTodo}>
                 <input 
                         name="todo"
                         placeholder="Enter Todo"
                         onChange={this.handleChange} />
                 <button className="input-button" type="submit" value="Login"> Submit </button>
-                </form>
-                Hello from Input
-            </div>
+                </Form>
+            </InputContainer>
         )
     }
 
