@@ -8,6 +8,7 @@
 import { shallow, mount } from 'enzyme'
 import React from 'react'
 import Input from '../Input'
+import { Form } from '../styled-components/Form'
 //mount mounts everything as it would be in the tree, while shallow just mounts the component without it children
 //shallow is much lighter wright
 //you won't have to worry about other component breaking
@@ -47,7 +48,7 @@ it('Submits user text to the addTodo callback', ()=>{
     //enzyme creates a shallow wrapper
     //.find is a method of enzyme
     // const button = component.find('button')
-    const form = component.find('form')
+    const form = component.find(Form)
     //all the wrappers have a method called simulate
     //'change' string applies to the onChange method, and this syntax is consistent with all native events
     const userInput = 'testString'
