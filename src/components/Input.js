@@ -18,13 +18,13 @@ class Input extends Component{
     render(){
         return(
             <InputContainer>
-                <Form onSubmit={this.addTodo}>
+                <form onSubmit={this.addTodo}>
                 <input 
                         name="todo"
                         placeholder="Enter Todo"
                         onChange={this.handleChange} />
                 <button className="input-button" type="submit" value="Login"> Submit </button>
-                </Form>
+                </form>
             </InputContainer>
         )
     }

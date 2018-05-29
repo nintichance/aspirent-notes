@@ -3,7 +3,7 @@ import React from 'react'
 const List = (props) => {
     const listItems = props.todos.map((todo, index)=>{
         return(
-            <div key={index}>
+            <div key={index} className='todoItem'>
                 {todo}
             </div>
         )

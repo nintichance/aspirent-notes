@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Input from './components/Input'
 import List from './components/List'
 import { AppContainer } from './components/styled-components/Containers'
-
+//instance of the App class
+//render method takes the JSX and turns it into a JS object which holds it to the tree
 class App extends Component {
   state = {
     todos: []
