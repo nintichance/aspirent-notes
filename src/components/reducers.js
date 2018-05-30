@@ -7,9 +7,11 @@ const todosApp = (state = initialState, action) => {
         case 'ADD_TODO':
             return {
                 ...state,
-                todos: [...todos, action.todo]
+                todos: [...state.todos, action.todo]
             }
         default :
             return state
     }
 }
+
+export default todosApp

@@ -9,6 +9,9 @@ import { shallow, mount } from 'enzyme'
 import React from 'react'
 import Input from '../Input'
 import { Form } from '../styled-components/Form'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todosApp from '../reducers'
 //mount mounts everything as it would be in the tree, while shallow just mounts the component without it children
 //shallow is much lighter wright
 //you won't have to worry about other component breaking
@@ -19,18 +22,24 @@ import { Form } from '../styled-components/Form'
 
 const renderComponent = () => {
     //render our component
-    return shallow(
-        <Input addTodo={addTodo}/>
+    return mount(
+        <Provider store={store}>
+            <Input />
+        </Provider>
     )
 }
 //we need to simulate addTodo
-let addTodo 
+let store
 let component
+let initialState
 //this gets run before reach of the test below, also have beforeAll, afterEach, afterAll
 beforeEach(()=>{
     //just creates a mock function that we can then assert stuff that's been called on it
     //we can also pass in an empty arrow function....
-    addTodo = jest.fn()
+    initialState = {
+        todos: ['test1', 'test2', 'test3']
+    }
+    store = createStore(todosApp, initialState)
     component = renderComponent()
 })
 //either test or it for this syntax
@@ -40,7 +49,7 @@ beforeEach(()=>{
 //     //toEqual can compare objects
 // })
 
-it('Submits user text to the addTodo callback', ()=>{
+it('Submits user text to the addTodo action', ()=>{
     //finds the native element for the input
     //we want to simlate the user typing info 
     const input = component.find('input')
@@ -67,7 +76,11 @@ it('Submits user text to the addTodo callback', ()=>{
         preventDefault: jest.fn()
     }
     form.simulate('submit', submitEvent)
-    expect(addTodo).toHaveBeenCalledWith(userInput)
+    const state = store.getState()
+    const expectedState = {
+        todos: ['test1', 'test2', 'test3', userInput]
+    }
+    expect(state).toEqual(expectedState)
 })
 
 //propTypes is a way to determine that your component has the props that its expected to have

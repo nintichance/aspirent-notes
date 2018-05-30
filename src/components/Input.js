@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { InputContainer } from './styled-components/Containers'
 import { Form } from './styled-components/Form'
+import { addTodo } from './actions'
+import { connect } from 'react-redux'
 class Input extends Component{
     state = {
         todo: ''
@@ -13,6 +15,7 @@ class Input extends Component{
     addTodo = (event) => {
         event.preventDefault()
         this.props.addTodo(this.state.todo)
+        this.setState({todo: ''})
     }
 
     render(){
@@ -21,6 +24,7 @@ class Input extends Component{
                 <Form onSubmit={this.addTodo}>
                 <input 
                         name="todo"
+                        value={this.state.todo}
                         placeholder="Enter Todo"
                         onChange={this.handleChange} />
                 <button className="input-button" type="submit" value="Login"> Submit </button>
@@ -31,4 +35,14 @@ class Input extends Component{
 
 }
 
-export default Input
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTodo: (todo) => {
+            dispatch(addTodo(todo))
+        }
+    }
+}
+
+//mapStateToProps handles state 
+//mapDispatchToProps handle actions
+export default connect(undefined, mapDispatchToProps)(Input)
