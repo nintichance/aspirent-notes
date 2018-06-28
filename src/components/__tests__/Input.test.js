@@ -2,7 +2,7 @@
 //Only replaces parts of the DOM that needs the change
 //Basically a test virtual DOM, JS DOM
 //Focus on test for UI Components
-//Test the behavior of the component, ot the internal workings
+//Test the behavior of the component, or the internal workings
 //Everytime you press a key, it updates the state
 //We don't want to test the internal state, just verify that from the user's perspective, it does what it needs
 import { shallow, mount } from 'enzyme'
@@ -13,7 +13,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import todosApp from '../reducers'
 //mount mounts everything as it would be in the tree, while shallow just mounts the component without it children
-//shallow is much lighter wright
+//shallow is much lighter weight
 //you won't have to worry about other component breaking
 //mount is better for integration tests
 //Context API is using render props, which doesn't play nicely with enzyme's shallow
@@ -22,6 +22,8 @@ import todosApp from '../reducers'
 
 const renderComponent = () => {
     //render our component
+    //mount renders both the component and any children that it may have
+    //shallow just renders the component
     return mount(
         <Provider store={store}>
             <Input />
@@ -84,3 +86,4 @@ it('Submits user text to the addTodo action', ()=>{
 })
 
 //propTypes is a way to determine that your component has the props that its expected to have
+

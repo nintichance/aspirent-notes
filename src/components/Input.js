@@ -27,7 +27,6 @@ class Input extends Component{
                         value={this.state.todo}
                         placeholder="Enter Todo"
                         onChange={this.handleChange} />
-                <button className="input-button" type="submit" value="Login"> Submit </button>
                 </Form>
             </InputContainer>
         )
